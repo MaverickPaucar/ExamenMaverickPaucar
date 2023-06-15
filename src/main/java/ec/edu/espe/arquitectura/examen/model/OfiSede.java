@@ -2,14 +2,14 @@ package ec.edu.espe.arquitectura.examen.model;
 
 import java.util.Date;
 
-import org.hibernate.mapping.List;
+//import org.hibernate.mapping.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+//import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -19,8 +19,8 @@ import jakarta.persistence.Version;
 @Table(name = "OFI_SEDE")
 public class OfiSede {
     @Id
-    @Column(name = "COD_SEDE")
-    private Integer codigo;
+    @Column(name = "COD_SEDE", length = 8, nullable = false)
+    private String codigo;
 
     @Column(name = "NOMBRE", length = 100, nullable = false)
     private String nombre;
@@ -49,15 +49,47 @@ public class OfiSede {
     public OfiSede() {
     }
 
-    public OfiSede(Integer codigo) {
+    public OfiSede(String codigo) {
         this.codigo = codigo;
     }
 
-    public Integer getCodigo() {
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OfiSede other = (OfiSede) obj;
+        if (codigo == null) {
+            if (other.codigo != null)
+                return false;
+        } else if (!codigo.equals(other.codigo))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "OfiSede [codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", esPrincipal="
+                + esPrincipal + ", fechaCreacion=" + fechaCreacion + ", version=" + version + ", ofiInstitucion="
+                + ofiInstitucion + "]";
+    }
+
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -107,38 +139,6 @@ public class OfiSede {
 
     public void setOfiInstitucion(OfiInstitucion ofiInstitucion) {
         this.ofiInstitucion = ofiInstitucion;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OfiSede other = (OfiSede) obj;
-        if (codigo == null) {
-            if (other.codigo != null)
-                return false;
-        } else if (!codigo.equals(other.codigo))
-            return false;
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "OfiSede [codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", esPrincipal="
-                + esPrincipal + ", fechaCreacion=" + fechaCreacion + ", version=" + version + ", ofiInstitucion="
-                + ofiInstitucion + "]";
     }
 
 }
