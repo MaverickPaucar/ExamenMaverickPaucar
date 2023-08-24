@@ -1,5 +1,8 @@
 package ec.edu.espe.arquitectura.examen.service;
 
+import java.util.Optional;
+
+import org.antlr.v4.runtime.atn.SemanticContext.OR;
 import org.springframework.stereotype.Service;
 
 import ec.edu.espe.arquitectura.examen.model.OfiSede;
@@ -17,10 +20,12 @@ public class OfiSedeService {
 
     @Transactional
     public OfiSede create(OfiSede ofiSede) {
-        if (!this.ofiSedeRepository.existsById(ofiSede.getCodigo())) {
+        OfiSede ofiSedeTmp = this.ofiSedeRepository
+                .findByCodigoInstitucionAndEsPrincipal(ofiSede.getCodigoInstitucion(), ofiSede.getEsPrincipal());
+        if (ofiSedeTmp == null || this.ofiSedeRepository.existsById(ofiSede.getCodigo())) {
             return this.ofiSedeRepository.save(ofiSede);
         } else {
-            throw new RuntimeException("Ya existe la sede");
+            throw new RuntimeException("Ya existe la SEDE o la ");
         }
     }
 

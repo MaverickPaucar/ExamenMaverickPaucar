@@ -7,5 +7,5 @@ import ec.edu.espe.arquitectura.examen.model.OfiSede;
 
 @Repository
 public interface OfiSedeRepository extends JpaRepository<OfiSede, String> {
-    OfiSede findByCodigo(String codigo);
+    OfiSede findByCodigoInstitucionAndEsPrincipal(Integer codigo, Boolean esPrincipal);
 }

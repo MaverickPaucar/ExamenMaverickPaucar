@@ -22,6 +22,9 @@ public class OfiSede {
     @Column(name = "COD_SEDE", length = 8, nullable = false)
     private String codigo;
 
+    @Column(name = "COD_INSTITUCION", nullable = false)
+    private Integer codigoInstitucion;
+
     @Column(name = "NOMBRE", length = 100, nullable = false)
     private String nombre;
 
@@ -91,6 +94,14 @@ public class OfiSede {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public Integer getCodigoInstitucion() {
+        return codigoInstitucion;
+    }
+
+    public void setCodigoInstitucion(Integer codigoInstitucion) {
+        this.codigoInstitucion = codigoInstitucion;
     }
 
     public String getNombre() {

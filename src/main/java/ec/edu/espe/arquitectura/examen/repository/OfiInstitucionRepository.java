@@ -7,5 +7,5 @@ import ec.edu.espe.arquitectura.examen.model.OfiInstitucion;
 
 @Repository
 public interface OfiInstitucionRepository extends JpaRepository<OfiInstitucion, Integer> {
-    OfiInstitucion findByCodigo(Integer codigo);
+    OfiInstitucion findByRuc(Integer ruc);
 }
